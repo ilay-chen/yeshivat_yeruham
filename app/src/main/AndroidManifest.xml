@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.flower.yeshivatyeruham">
+
+    <uses-sdk tools:overrideLibrary="net.protyposis.android.mediaplayer" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Location permission is needed for recognizing WiFi SSID on Andriod 8.0+ -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS"
+
+     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:name=".DataClass"
+        android:allowBackup="true"
+        android:appComponentFactory="@string/action_sign_in"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">
+        <service
+            android:name=".RecordingService"
+            android:enabled="true"
+            android:exported="true" /> <!-- android:name=".LoginActivity" -->
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/splashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TaggingActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".RecordingActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".UploadDialog"
+            android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".FTPSearchActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ContactSelectedActivity"
+            android:label="נבחרים"
+            android:theme="@style/ActionBar"></activity>
+        <activity
+            android:name=".ContactsActivity"
+            android:theme="@style/ActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".GroupsActivity"
+            android:label="@string/title_activity_groups"
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name=".DetailsActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@style/NoTitleDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="yeshivatyeruham" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SksActivity"
+            android:label="סק&quot;ש"
+            android:theme="@style/ActionBar">
+            <intent-filter android:label="העלאה לרשת הישיבתית">
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/*" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="image/*" />
+                <!-- <data android:mimeType="message/*" /> -->
+                <!-- <data android:mimeType="multipart/*" /> -->
+                <!-- <data android:mimeType="text/*"/> -->
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StartupActivity"
+            android:theme="@style/NoTitleDialog"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PlayLessonDialog"
+            android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".AttendanceDialog"
+            android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".AttendanceListDialog"
+            android:launchMode="singleTask"
+            android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".DownloadsActivity"
+            android:label="@string/title_activity_downloads"
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name=".FavoritesActivity"
+            android:label="@string/title_activity_favorites"
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name=".GuestActivity"
+            android:theme="@style/ActionBar" />
+
+        <service
+            android:name=".BackgroundService"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedService" />
+        <service
+            android:name=".RecognizeService"
+            android:enabled="true" />
+        <service
+            android:name=".WalkingIconService"
+            android:enabled="true" />
+
+        <receiver
+            android:name=".ProgressReceiver"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.Flower.ProgressReceiver" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".CallListener">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".SmsListener"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <receiver
+            android:name=".StopReceiver"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.Flower.stopReceiver" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/ActionBar" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- <service android:name=".MusicService"/> -->
+        <activity
+            android:name=".MessageDialog"
+            android:theme="@style/NoTitleWideDialog"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SendMessagesActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".MessagesActivity"
+            android:label="@string/title_messages_settings"
+            android:theme="@style/ActionBar" />
+        <activity android:name=".ActiveActivity" />
+        <activity android:name=".ManagerActivity" />
+        <activity
+            android:name=".LibraryActivity"
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+    </application>
+
+</manifest>

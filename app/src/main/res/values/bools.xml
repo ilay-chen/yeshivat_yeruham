@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="files_in_library_default">false</bool>
+    <bool name="call_recognition_default">true</bool>
+    <bool name="sms_recognition_default">true</bool>
+    <bool name="screen_on_default">false</bool>
+    <bool name="show_ntf_default">true</bool>
+    <bool name="show_pics_default">true</bool>
+</resources>

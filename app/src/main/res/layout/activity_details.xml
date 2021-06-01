@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_details"
+    android:layout_centerHorizontal="true"
+    android:layout_width="240dp"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content"
+    android:background="#D9D9D9"
+    tools:context="com.flower.yeshivatyeruham.DetailsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/big_contact_pic"
+        android:id="@+id/detailsImage"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="#80122c43">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="vertical">
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:text="ישראל ישראלי"
+                android:textColor="#FFFFFF" />
+            <TextView
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0500000000"
+                android:textColor="#FFFFFF"
+                android:id="@+id/number"/>
+        </LinearLayout>
+
+    <TextView
+        android:textSize="20sp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/group"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detailsImage"
+        android:gravity="center_horizontal"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/copyButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@color/btn_normal"
+
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/copy_btn" />
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@color/btn_normal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/add_contact_btn" />
+
+        <ImageButton
+            android:id="@+id/smsButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@color/btn_normal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/sms_btn" />
+
+
+        <ImageButton
+            android:id="@+id/callButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@color/btn_normal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/call_btn" />
+
+    </LinearLayout>
+
+</RelativeLayout>

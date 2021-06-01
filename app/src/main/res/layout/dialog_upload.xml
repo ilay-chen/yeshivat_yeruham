@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_upload"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layoutDirection="rtl"
+    tools:ignore="MissingPrefix"
+
+    tools:context="com.flower.yeshivatyeruham.UploadDialog">
+
+    <TextView
+        android:text="פרטי שיעור"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:id="@+id/title" />
+
+    <TextView
+        android:text="השיעור אינו מתויג"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teacher_name"
+        android:textSize="17sp"
+        android:layout_below="@+id/title"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/teacher_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:id="@+id/lesson_name" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lesson_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:id="@+id/lesson_subject" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lesson_subject"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:id="@+id/date" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@+id/date"
+        android:paddingTop="15dp"
+        android:layoutDirection="rtl"
+        android:layout_height="70dp">
+
+
+
+    <ImageButton
+        android:text="מחק"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/delete_button"
+            android:background="@drawable/btn_color"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:id="@+id/delete_button" />
+
+    <ImageButton
+        android:text="תייג מחדש"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/taging_button"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/taging_button"
+        android:background="@drawable/btn_color" />
+        <ImageButton
+            android:text="נגן"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/play_button"
+            android:background="@drawable/btn_color"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:id="@+id/play_button" />
+
+        <ImageButton
+            android:text="העלה"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/upload_button"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/upload_button"
+            android:background="@drawable/btn_color"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
+
+</RelativeLayout>

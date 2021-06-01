@@ -1,0 +1,136 @@
+public void refreshPics(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(cxt);
+        Boolean showPics = sharedPreferences.getBoolean("show_pics",
+                cxt.getResources().getBoolean(R.bool.show_pics_default));
+        if (showPics){
+            String path = PicSavePath;
+            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.savedPics), MODE_PRIVATE);
+            String allPics = sharedPref.getString(getString(R.string.savedPics), "");
+            try {
+                ArrayList<String> pics = new ArrayList<>();
+                File deviceDir = new File(path);
+                File[] deviceFiles = deviceDir.listFiles();
+                if (deviceFiles == null)
+                    deviceFiles = new File[0];
+                for (File deviceFile : deviceFiles) {
+                    if (deviceFile.getName().contains(".jpeg"))
+                        pics.add(deviceFile.getName().replace(".jpeg", ""));
+                }
+
+                String user = getString(R.string.user) + ":" + getString(R.string.pass);
+                NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(user);
+                SmbFile netRootDir = new SmbFile(netPicsPath, auth);
+                netRootDir.setConnectTimeout(10000);
+                SmbFile[] netFolders = netRootDir.listFiles();
+                for (SmbFile netFolder : netFolders) {
+                    if (netFolder.getName().endsWith("/")) {
+                        SmbFile[] netFiles = netFolder.listFiles();
+                        for (SmbFile netFile : netFiles) {
+
+                            String num = netFile.getName().toLowerCase().replace(".jpg", "").replace(".jpeg", "");
+                            String date = netFile.getLastModified() + "";
+
+                            if (allPics.contains(num + "-")) { //exist
+                                String contact = allPics.substring(allPics.indexOf(num)).split(",")[0];
+                                String oldDate = contact.split("-")[1];
+                                if (oldDate.equals(date)) //same - do noting
+                                {
+                                    pics.remove(num);
+                                } else { //different - update
+                                    String newContact = contact.replace(oldDate, date);
+                                    allPics = allPics.replace(contact, newContact);
+//                        File f = new File(path + num + ".jpeg");
+//                        f.delete();
+//                        scanFile(f);
+                                    saveToInternalStorage(netFile);
+                                    pics.remove(num);
+                                }
+                            } else { //not exist - add
+                                allPics = allPics + num + "-" + date + ",";
+
+                                saveToInternalStorage(netFile);
+                                pics.remove(num);
+                            }
+                        }
+                    }
+                }
+                for(int i = 0; i < pics.size(); i++){ // delete old pics
+                    File delFile = new File(path + pics.get(i) + ".jpeg");
+                    delFile.delete();
+                    String contact = allPics.substring(allPics.indexOf(pics.get(i))).split(",")[0] + ",";
+                    allPics = allPics.replace(contact,"");
+                    scanFile(delFile);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (SmbException e) {
+                e.printStackTrace();
+            }
+//                Boolean fileExist = false;
+//                for (int j = 0; j < deviceFiles.length; j++){
+////                    String num = netFiles[i].getName().split("-")[0].trim();
+////                    if(deviceFiles[j].getName().contains(".jpeg") && deviceFiles[j].getName().contains(num)) { //if is exist
+////                        if (netFiles[i].getName().equals(deviceFiles[j].getName())) { // if its fine
+////                            fileExist = true;
+////                            //                        long netLast = netFiles[i].lastModified() - System.currentTimeMillis();
+////                            //                        long devLast = deviceFiles[j].lastModified()- System.currentTimeMillis() - (1000*60*60*2);
+////                            //                        if (netLast < devLast){
+////                            //                            // if need update
+////                            //                            long last = netFiles[i].lastModified();
+////                            //                            saveToInternalStorage(netFiles[i]);
+////                            //                            //deviceFiles[j].setLastModified(last);
+////                            //                            // replace pic netFiles[i]
+////                            //                        }
+////                        }else { //if its had to update
+////                            deviceFiles[j].delete();
+////                            scanFile(deviceFiles[j]);
+////                            saveToInternalStorage(netFiles[i]);
+////                        }
+////                        pics.remove(deviceFiles[j]);
+////                        break;
+////                    }
+//                    if (deviceFiles[j].getName().contains(num)){
+//                        String allPics = sharedPref.getString(getString(R.string.savedPics),"");
+//                        if (allPics.contains(num)){
+//
+//                        }
+//                        if (netFiles[i].getName().equals(deviceFiles[j])){
+//                            fileExist = true;
+//                        }
+//                    }else {
+//                        String allPics = sharedPref.getString(getString(R.string.savedPics),"");
+//                        allPics = allPics + num + "-" + ver + "," ;
+//
+//                        SharedPreferences.Editor editor = sharedPref.edit();
+//                        editor.putString(getString(R.string.savedPics), allPics);
+//                        editor.commit();
+//
+//                    }
+//                }
+//                if(!fileExist) //if isnt exist
+//                {
+//                    saveToInternalStorage(netFiles[i]);
+//                    //addFile
+//                }
+//            }
+//            //delete unused pics
+//            for (int i = 0; i< pics.size(); i++)  {
+//                File from  = pics.get(i);
+//                from.delete();
+//                scanFile(from);
+//            }
+//
+//            SharedPreferences sharedPref = getSharedPreferences(
+//                    getString(R.string.savedPics),
+//                    MODE_PRIVATE);
+//            String allPics = sharedPref.getString(getString(R.string.savedPics),"");
+//            allPics = allPics + num + "-" + ver + "," ;
+//
+//            SharedPreferences.Editor editor = sharedPref.edit();
+//            editor.putString(getString(R.string.savedPics), allPics);
+//            editor.commit();
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(getString(R.string.savedPics), allPics);
+            editor.apply();
+        }
+    }

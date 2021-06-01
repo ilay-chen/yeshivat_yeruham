@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.CheckBoxPreference
+        android:defaultValue="@bool/files_in_library_default"
+        android:key="files_in_library"
+        android:summaryOff="קבצים שנשמרו לא יוצגו בנגן המדיה"
+        android:summaryOn="קבצים שנשמרו יוצגו בנגן המדיה"
+        android:title="הצג קבצים בנגן המדיה" />
+
+    <android.support.v7.preference.CheckBoxPreference
+        android:defaultValue="@bool/call_recognition_default"
+        android:key="call_recognition"
+        android:summaryOff="לא מזהה שיחות מתלמידי הישיבה"
+        android:summaryOn="מזהה שיחות מתלמידי הישיבה"
+        android:title="זיהוי שיחות" />
+
+    <android.support.v7.preference.CheckBoxPreference
+        android:defaultValue="@bool/sms_recognition_default"
+        android:key="sms_recognition"
+        android:summaryOff="לא מזהה הודעות מתלמידי הישיבה"
+        android:summaryOn="מזהה הודעות מתלמידי הישיבה"
+        android:title="זיהוי הודעות" />
+
+    <android.support.v7.preference.CheckBoxPreference
+        android:defaultValue="@bool/show_pics_default"
+        android:key="show_pics"
+        android:summaryOff="לא מציג תמונות"
+        android:summaryOn="מציג תמונות"
+        android:title="תמונות אנשי קשר" />
+
+    <android.support.v7.preference.CheckBoxPreference
+        android:defaultValue="@bool/screen_on_default"
+        android:key="screen_on"
+        android:summaryOff="המסך ינעל לאחר מספר שניות"
+        android:summaryOn="המסך ישאר דולק בזמן הקלטה"
+        android:title="מסך דולק בזמן הקלטה" />
+
+    <!--<android.support.v7.preference.CheckBoxPreference-->
+        <!--android:defaultValue="@bool/show_ntf_default"-->
+        <!--android:key="show_ntf"-->
+        <!--android:summaryOff="התראות לא מתקבלות (לא מומלץ)"-->
+        <!--android:summaryOn="התראות מתקבלות לפי מחזור (מומלץ)"-->
+        <!--android:title="קבלת התראות" />-->
+    <android.support.v7.preference.Preference
+        android:title="רשימת נוכחות"
+        android:key="attendanceList"
+        android:summary="רשימת הנרשמים לשבתות ישיבה"/>
+
+    <android.support.v7.preference.Preference
+        android:title="נוכחות"
+        android:key="attendance"
+        android:summary="הרשמות לשבתות ישיבה"/>
+
+    <android.support.v7.preference.Preference
+        android:title="עדכן תמונה"
+        android:key="update_pic"
+        android:summary="עדכן את תמונת הפרופיל שלך"/>
+
+    <android.support.v7.preference.Preference
+        android:title="דווח על תקלה"
+        android:key="bug_report"
+        android:summary="נתקלת בבעיה? יש לך רעיון גאוני? נשמח לשמוע..."/>
+
+    <android.support.v7.preference.Preference
+        android:title="רענן קבצים"
+        android:key="refresh_files"
+        android:summary="רענן קבצי מערכת"/>
+
+    <android.support.v7.preference.Preference
+        android:title="התנתק"
+        android:key="sign_out"
+        android:summary=""/>
+
+    <android.support.v7.preference.Preference
+        android:title="שליחת הודעות"
+        android:key="send_msgs"
+        android:summary="שליחת הודעות לתמידי הישיבה"/>
+
+
+
+</android.support.v7.preference.PreferenceScreen>

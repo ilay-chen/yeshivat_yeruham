@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#00B050</color>
+    <color name="btn_normal">#00000000</color>
+    <color name="btn_focus">#20000000</color>
+    <color name="dark_btn_normal">#00000000</color>
+    <color name="dark_btn_focus">#20FFFFFF</color>
+    <color name="btn_blue_normal">#7068b0ef</color>
+    <color name="listview_pressed_color">#70abb9b9</color>
+    <color name="listview_default_color">#00000000</color>
+    <color name="action_bar_color">#ffffff</color>
+    <color name="action_bar_text">#00ffffff</color>
+    <color name="background_color">#BDD7EE</color>
+    <color name="call_color">#75c974</color>
+    <color name="share_color">#749fc9</color>
+    <color name="open_fav_color">#749fc9</color>
+    <color name="save_fav_color">#f1c056</color>
+    <color name="open_folder_color">#749fc9</color>
+    <color name="delete_color">#e47063</color>
+    <color name="sms_color">#f1c056</color>
+    <color name="bar_color">#000000</color>
+    <color name="loader_background">#30000000</color>
+    <color name="attendance_here">#75c974</color>
+    <color name="attendance_not_here">#e47063</color>
+    <color name="did_not_respond">#f7f7f7</color>
+
+</resources>

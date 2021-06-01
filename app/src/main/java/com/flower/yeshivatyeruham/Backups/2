@@ -1,0 +1,265 @@
+package com.flower.yeshivatyeruham;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.apache.commons.net.ftp.FTPClient;
+
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
+
+import jcifs.smb.SmbException;
+
+import static com.flower.yeshivatyeruham.DataClass.ContactPath;
+import static com.flower.yeshivatyeruham.DataClass.ServerPass;
+import static com.flower.yeshivatyeruham.DataClass.netContactsPath;
+import static com.flower.yeshivatyeruham.LoginActivity.mAuthTask;
+import static com.flower.yeshivatyeruham.LoginActivity.isNumVerify;
+import static com.flower.yeshivatyeruham.SettingsFragment.getNumberAsString;
+
+public class VerifyActivity extends AppCompatActivity
+{
+    Button submit;
+    EditText contact;
+    static String phNo;
+    String name;
+    String group;
+    static ProgressDialog progress;
+    static Boolean wasMyOwnNumber;
+    static Boolean workDone;
+    final static int SMS_ROUNDTRIP_TIMOUT = 30000;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_verify);
+        contact = (EditText)findViewById(R.id.mobileNumber);
+        submit = (Button) findViewById(R.id.submit);
+        wasMyOwnNumber = false;
+        workDone = false;
+        submit.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                phNo = contact.getText().toString();
+                new CheckOwnMobileNumber().execute();
+            }
+        });
+    }
+
+    private class CheckOwnMobileNumber extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected void onPostExecute(String result)
+        {
+            // TODO Auto-generated method stub
+            if(progress.isShowing())
+            {
+//                checkNum();
+                if(wasMyOwnNumber)
+                {
+                    if (workDone) {
+                        Toast.makeText(getApplicationContext(), name + " המספר זוהה בהצלחה" + group, Toast.LENGTH_LONG).show();
+                        isNumVerify = true;
+                        mAuthTask = new LoginActivity.UserLoginTask("yhy23", "yhy12345");
+                        mAuthTask.execute((Void) null);
+//                        saveConnection(group, name, phNo);
+                        wasMyOwnNumber = false;
+                        workDone = false;
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "המספר זוהה אך לא נמצא במאגר הנתונים, פנה לא. אפליקציה", Toast.LENGTH_LONG).show();
+                        wasMyOwnNumber = false;
+                        workDone = false;
+                        progress.dismiss();
+                    }
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "שגיאה בזיהוי מספר", Toast.LENGTH_LONG).show();
+                    wasMyOwnNumber = false;
+                    workDone = false;
+                    return;
+                }
+            }
+            super.onPostExecute(result);
+        }
+
+        @Override
+        protected String doInBackground(String... params)
+        {
+            // TODO Auto-generated method stub
+            String msg = phNo;
+            try
+            {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(phNo, null, msg, null, null);
+                timeout();
+            }
+            catch(Exception ex)
+            {
+                Log.v("Exception :", ""+ex);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            // TODO Auto-generated method stub
+            progress = ProgressDialog.show(VerifyActivity.this, "","מאמת מספר פלאפון...");
+            progress.setIndeterminate(true);
+            progress.getWindow().setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+            super.onPreExecute();
+        }
+    }
+
+    private Boolean checkNum() {
+
+        String path = netContactsPath;
+        FTPClient mFTPClient;
+        mFTPClient = new FTPClient();
+        Boolean found = false;
+
+        path = path.replace("smb://192.168.1.25/mp3admin/","");
+
+        try {
+            mFTPClient.setAutodetectUTF8(true);
+
+            mFTPClient.connect("yhy.co.il");
+            mFTPClient.enterLocalPassiveMode();
+            mFTPClient.login("mp3site@yhy.co.il", ServerPass);
+
+            InputStream in = mFTPClient.retrieveFileStream(path);
+
+            BufferedReader reader;
+            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+            // do reading, usually loop until end of file reading
+            String mLine = reader.readLine();
+
+            while (mLine != null) {
+                // process line_divider
+                if (!mLine.equals("") && !mLine.contains("#") && checkLine(mLine, phNo)) {
+                    processLine(mLine);
+                    found = true;
+                    break;
+                }
+                mLine = reader.readLine();
+            }
+            in.close();
+            reader.close();
+            mFTPClient.disconnect();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SmbException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return found;
+    }
+    public static boolean checkLine(String line, String num) {
+        String[] SplitLine = line.split(",", 4);
+
+        if (SplitLine[1].equals(num)) {
+            return true;
+        }
+        return false;
+//        if (SplitLine[0].startsWith(query)){
+//            return true;
+//        }
+//        else if (words.length == 2 && SplitLine[0].startsWith(words[1])
+//                && SplitLine[0].startsWith(words[0]))
+//            return true;
+//        return false;
+    }
+    public void processLine(String Line) {
+        String[] data = Line.split(",", 4);
+        name = data[0];
+        group = data[2];
+//        numArr.add(data[1]);
+//        groupArr.add(data[2]);
+    }
+
+    private boolean timeout()
+    {
+        int waited = 0;
+        while (waited < SMS_ROUNDTRIP_TIMOUT)
+        {
+            try
+            {
+                Thread.sleep(100);
+            }
+            catch (InterruptedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            waited += 100;
+            if(phoneNumberConfirmationReceived())
+            {
+                waited=SMS_ROUNDTRIP_TIMOUT;
+                workDone = checkNum();
+            }
+        }
+           /*Log.v("MainActivity:timeout2: Waited: " , ""+waited);
+           Log.v("MainActivity:timeout2:Comparision: ", ""+ phoneNumberConfirmationReceived());
+           Log.v("MainActivity:timeout2: WorkDone value after wait complete : ", ""+workDone);*/
+        return workDone;
+    }
+
+    private boolean phoneNumberConfirmationReceived()
+    {
+        if(wasMyOwnNumber && checkNum())
+        {
+            workDone = true;
+        }
+        return workDone;
+    }
+    public void saveConnection(String user, String group, String num)
+    {
+
+        SharedPreferences sharedPref = getSharedPreferences("strings", MODE_PRIVATE);
+        String oldUser = sharedPref.getString("user","null");
+        if(!oldUser.equals("null"))
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(getNumberAsString(sharedPref.getString("user","")));
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("connected", true);
+        editor.putString("user",user);
+        editor.apply();
+
+        FirebaseMessaging.getInstance().subscribeToTopic(getNumberAsString(sharedPref.getString("user","")));
+    }
+}

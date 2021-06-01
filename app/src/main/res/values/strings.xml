@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">ישיבת ירוחם</string>
+    <string name="title_activity_record">RecordActivity</string>
+    <string name="netDataPath">smb://192.168.1.25/mp3admin/מערכת/appdata/tagData.xml</string>
+    <string name="netContactsPath">smb://192.168.1.25/mp3admin/מערכת/appdata/contacts_database.txt</string>
+    <string name="netAllActPath">smb://192.168.1.25/mp3admin/מערכת/appdata/allAct.txt</string>
+    <string name="netLibraryPath">smb://192.168.1.25/mp3admin/מערכת/appdata/library.txt</string>
+    <string name="saveMp3Path">smb://192.168.1.25/mp3admin/מערכת/שגיאה בהעלאה/</string>
+    <string name="saveSpecialLessons">smb://192.168.1.25/mp3admin/ספריית קבצי שמע/שיעורים מיוחדים שעוד לא מויינו/</string>
+    <string name="netLogPath">smb://192.168.1.25/mp3admin/מערכת/appdata/appLog.txt</string>
+    <string name="netSksDownloadsCountPath">smb://192.168.1.25/mp3admin/מערכת/appdata/counter_sks_downloads.txt</string>
+    <string name="netFilesDownloadsCountPath">smb://192.168.1.25/mp3admin/מערכת/appdata/counter_files_downloads.txt</string>
+    <string name="netFTPDownloadsCountPath">/מערכת/appdata/counter_downloads.txt</string>
+    <string name="netUploadsCountPath">smb://192.168.1.25/mp3admin/מערכת/appdata/counter_uploads.txt</string>
+    <string name="netFilesUploadsCountPath">smb://192.168.1.25/mp3admin/מערכת/appdata/counter_files_uploads.txt</string>
+    <string name="netPublicLessonsPath">smb://192.168.1.25/mp3admin/מערכת/appdata/publicLessons.txt</string>
+    <string name="netTTPPicsPath">/מערכת/appdata/pics/</string>
+    <string name="netFTPAppDataPath">מערכת/appdata/</string>
+    <string name="report_bug_email">yhyapp12@gmail.com</string>
+    <string name="pass">pr,navrchbu</string>
+    <string name="user">mp3</string>
+    <string name="version">3.0</string>
+    <string name="theFirstTime">true</string>
+
+    <string name="title_activity_groups">בחר מחזור</string>
+    <string name="title_activity_downloads">קבצים שהורדו</string>
+    <string name="title_activity_settings">הגדרות</string>
+    <string name="title_messages_settings">הודעות</string>
+    <string name="title_activity_favorites">מועדפים</string>
+
+    <string name="allGroups">allGroups</string>
+    <string name="savedPics">savedPics</string>
+    <!--<string name="downloadedPics">downloadedPics</string>-->
+    <string name="allFavNicks">allFavNicks</string>
+    <string name="allFavPaths">allFavPaths</string>
+    <string name="title_activity_login">היכנס</string>
+    <string name="files_version">files_version</string>
+    <string name="yes">מה?! פשוט שוואטסאפ</string>
+    <string name="no">אחי, תן לי ב"old school"</string>
+    <string name="savedNtf">savedNtf</string>
+    <string name="savedNtf_titles">savedNtf_titles</string>
+    <string name="savedNtf_texts">savedNtf_texts</string>
+    <string name="savedNtf_links">savedNtf_links</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user_name">שם משתמש</string>
+    <string name="prompt_password">סיסמה</string>
+    <string name="action_sign_in">היכנס</string>
+    <string name="action_sign_in_short">היכנס</string>
+    <string name="error_invalid_email">שם משתמש שגוי</string>
+    <string name="error_invalid_password">סיסמה זו קצרה מידי</string>
+    <string name="error_incorrect_password">סיסמה שגויה</string>
+    <string name="error_field_required">שדה זה הוא שדה חובה</string>
+
+    <string name="back"><![CDATA[<]]></string>
+    <string name="rewind"><![CDATA[<<]]></string>
+    <string name="forward"><![CDATA[>>]]></string>
+    <string name="pause">||</string>
+
+
+    <string name="crop_image_menu_rotate_right">סובב</string>
+    <string name="crop_image_menu_crop">זהו, בחרתי</string>
+    <string name="crop_image_menu_flip_horizontally">הפוך אופקית</string>
+    <string name="crop_image_menu_flip_vertically">הפוך אנכית</string>
+    <string name="pick_image_intent_chooser_title">בחר מקור</string>
+    <string name="crop_image_menu_rotate_left">סובב נגד כיוון השעון</string>
+    <string name="crop_image_menu_flip">הפוך</string>
+
+    <string name="actionmode_cancel">בטל</string>
+    <string name="menu_actionmode">Action Mode</string>
+    <string name="actionmode_title">Action Mode</string>
+
+    <string name="whats_new_in_update_title">אז מה חדש?</string>
+    <string name="whats_new_in_update_text"><![CDATA[✓ תיקנו כמה בעיות נוראיות. היום גם מכשירים חדשים יכולים להיכנס לרשת\n
+                                ✓ קטלוג הספריה עכשיו באפליקציה. ווהוו!\n
+✓ תיקנו קצת בעיות והוספנו שיפורים, נתקלת בבעיה?? נשמח אם תדווח…]]></string>
+    <string name="whats_new_in_update_confirm">וואלה, מרתק!</string>
+    <string name="localStudentsFN">נמצא_בישיבה.txt</string>
+    <string name="properties">_properties.txt</string>
+    <string name="ContactPath">contacts_database.txt</string>
+    <string name="LibraryPath">library.txt</string>
+    <string name="attendance_path">attendance.txt</string>
+    <string name="dialog_att_autocomplete">הכנס שם...</string>
+
+
+</resources>

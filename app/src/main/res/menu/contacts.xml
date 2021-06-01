@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.zozo.nofnikphone.MainActivity" >
+    <item
+        android:id="@+id/selected"
+        android:icon="@drawable/white_selected_group"
+        android:title="נבחרים"
+        android:visible="false"
+        app:showAsAction="always"></item>
+
+    <item
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:title="חיפוש"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:orderInCategory="2"
+        app:showAsAction="always">
+    </item>
+
+
+</menu>

@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.zozo.nofnikzphone.MainActivity" >
+    <item
+        android:id="@+id/send_message"
+        android:icon="@drawable/white_mssg_icon"
+        android:title="נבחרים"
+        app:showAsAction="always"
+        android:visible="true"
+        android:orderInCategory="2"
+
+        ></item>
+    <item
+        android:id="@+id/num_selected"
+        app:showAsAction="always"
+        android:icon="@drawable/shape_notification"
+        android:title=""
+        ></item>
+    <item
+        android:id="@+id/delete_all"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/white_delete_button"
+        android:title="מחק"></item>
+</menu>

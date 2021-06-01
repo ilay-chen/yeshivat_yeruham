@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_taging"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.flower.yeshivatyeruham.TaggingActivity"
+    android:background="@color/background_color"
+    android:layoutDirection="rtl">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layoutDirection="rtl"
+        android:id="@+id/linearLayout">
+
+    <TextView
+        android:text="תיוג הקלטה"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"/>
+
+        <TextView
+            android:text="מעביר השיעור:"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/teacher"
+            android:background="@drawable/borders_color" />
+
+        <TextView
+            android:id="@+id/teacherInvisibleError"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            />
+
+        <TextView
+            android:text="סדרת שיעורים:"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/lesson_text_view"/>
+
+    <Spinner
+        android:id="@+id/lessonname"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/borders_color" />
+
+        <TextView
+            android:id="@+id/lessonInvisibleError"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:padding="10dp"
+            android:hint="הקלד את שם המעביר"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:id="@+id/special_teacher"
+            android:background="@drawable/borders_color" />
+
+        <TextView
+        android:text="נושא השיעור: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:id="@+id/textView7" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:background="@drawable/borders_color"
+            android:text=""
+            android:ems="10"
+            android:padding="10dp"
+            android:hint="הקלד את נושא השיעור"
+            android:id="@+id/editText">
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:gravity="center_horizontal"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:text="העלה כעת"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:background="@drawable/btn_blue_color"
+            android:id="@+id/uploadNow" />
+
+        <Button
+            android:text="סיים תיוג"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_blue_color"
+            android:id="@+id/uploadLater" />
+    </LinearLayout>
+    
+</RelativeLayout>
